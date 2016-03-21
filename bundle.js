@@ -6789,7 +6789,7 @@ module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK){
   return C;
 };
 },{"./_an-instance":84,"./_export":108,"./_fails":110,"./_for-of":113,"./_global":114,"./_inherit-if-required":119,"./_is-object":125,"./_iter-detect":130,"./_meta":138,"./_redefine":163,"./_redefine-all":162,"./_set-to-string-tag":168}],100:[function(require,module,exports){
-var core = module.exports = {version: '2.2.0'};
+var core = module.exports = {version: '2.2.1'};
 if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 },{}],101:[function(require,module,exports){
 // optional / simple context binding
@@ -7543,7 +7543,7 @@ var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNa
 
 var getWindowNames = function(it){
   try {
-    return gOPN.f(it);
+    return gOPN(it);
   } catch(e){
     return windowNames.slice();
   }
@@ -7552,6 +7552,7 @@ var getWindowNames = function(it){
 module.exports.f = function getOwnPropertyNames(it){
   return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
 };
+
 },{"./_object-gopn":148,"./_to-iobject":183}],148:[function(require,module,exports){
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
 var $keys      = require('./_object-keys-internal')
