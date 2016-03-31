@@ -107,6 +107,8 @@ body {
  * Css grid variables
  */
 
+/* stylelint-disable number-max-precision */
+
 .link-button--styled {
   display: inline-block;
   font-family: 'EconSans', Tahoma, sans-serif;
