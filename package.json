@@ -122,7 +122,7 @@
     "@economist/component-list": "^1.0.0",
     "@economist/component-palette": "^1.4.4",
     "@economist/component-typography": "^3.1.1",
-    "react": "^0.14.8"
+    "react": "^15.0.1"
   },
   "devDependencies": {
     "@economist/component-icon": "^5.0.0",
