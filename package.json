@@ -118,7 +118,7 @@
     "@economist/component-balloon": "^2.3.0",
     "@economist/component-grid": "^1.2.2",
     "@economist/component-link-button": "^3.0.2",
-    "react": "^0.14.8"
+    "react": "^15.0.2"
   },
   "devDependencies": {
     "@economist/component-icon": "^5.0.0",
