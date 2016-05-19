@@ -70,7 +70,7 @@ function renderListContent(contentList, level = 0) {
     );
     }
     return (
-      <li className="list__item" key={`level${ level }-${ i }`}>
+      <li className={`list__item list__item--level-${ level }`} key={`level${ level }-${ i }`}>
         {listcontentItem}
       </li>
     );

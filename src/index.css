@@ -5,21 +5,17 @@
   font-size: 1rem;
 }
 
-/* stylelint-disable selector-no-type */
-
 .accordion.list,
-.accordion.list ul {
+.accordion.list .list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.accordion.list a {
+.accordion.list .accordion__link {
   text-decoration: none;
   background-repeat: no-repeat;
 }
-
-/* stylelint-enable selector-no-type */
 
 .accordion-expander--not-visible > .content {
   display: none;
