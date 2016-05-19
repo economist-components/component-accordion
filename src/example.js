@@ -1,5 +1,6 @@
-import Accordion from './index';
+import 'babel-polyfill';
 import React from 'react';
+import Accordion from './';
 import cardData from '@economist/component-sections-card/lib/context';
 // Force media links to use icon as background.
 cardData.media.map((mediaLink) => {
