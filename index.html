@@ -17,7 +17,6 @@ pre[class*&#x3D;&quot;language-&quot;] {
 	background: none;
 	text-shadow: 0 1px white;
 	font-family: Consolas, Monaco, &#x27;Andale Mono&#x27;, &#x27;Ubuntu Mono&#x27;, monospace;
-	direction: ltr;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
@@ -196,12 +195,17 @@ pre[class*&#x3D;&quot;language-&quot;] {
   <body>
         <h1 class="component-title">
       @economist/component-accordion
-      <span>(v0.0.0-development)</span>
+      <span>(v4.2.1)</span>
     </h1>
     <div id="component-preview">
       <script>
       window.addEventListener('load', function () {
-        require('react-dom').render(require('example'),document.getElementById('component-preview'));
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                'default': obj
+            };
+        }
+        require('react-dom').render(_interopRequireDefault(require('example')).default,document.getElementById('component-preview'));
       });
       </script>
     </div>
@@ -214,8 +218,9 @@ pre[class*&#x3D;&quot;language-&quot;] {
     </div>
     <div class="component-panel">
       <h2 id="example" class="component-panel-heading"><a href="#example">Example</a></h2>
-      <pre><code>    <span class="token keyword" >import</span> Accordion <span class="token keyword" >from</span> <span class="token string" >'./index'</span><span class="token punctuation" >;</span>
+      <pre><code>    <span class="token keyword" >import</span> <span class="token string" >'babel-polyfill'</span><span class="token punctuation" >;</span>
     <span class="token keyword" >import</span> React <span class="token keyword" >from</span> <span class="token string" >'react'</span><span class="token punctuation" >;</span>
+    <span class="token keyword" >import</span> Accordion <span class="token keyword" >from</span> <span class="token string" >'./'</span><span class="token punctuation" >;</span>
     <span class="token keyword" >import</span> cardData <span class="token keyword" >from</span> <span class="token string" >'@economist/component-sections-card/lib/context'</span><span class="token punctuation" >;</span>
     <span class="token comment" spellcheck="true">// Force media links to use icon as background.</span>
     cardData<span class="token punctuation" >.</span>media<span class="token punctuation" >.</span><span class="token function" >map</span><span class="token punctuation" >(</span><span class="token punctuation" >(</span>mediaLink<span class="token punctuation" >)</span> <span class="token operator" >=</span><span class="token operator" >></span> <span class="token punctuation" >{</span>
