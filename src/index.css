@@ -1,26 +1,7 @@
-@import '@economist/component-link-button';
-@import './arrows.css';
-
-.accordion {
-  font-size: 1rem;
-}
-
-.accordion.list,
-.accordion.list .list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.accordion.list .accordion__link {
-  text-decoration: none;
-  background-repeat: no-repeat;
-}
-
-.accordion-expander--not-visible > .content {
-  display: none;
-}
-
-.accordion-expander--visible > .content {
+.accordion__panel {
   display: block;
+}
+
+.accordion__panel-container--collapsed {
+  display: none;
 }

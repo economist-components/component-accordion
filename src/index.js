@@ -1,106 +1,63 @@
-import Balloon from '@economist/component-balloon';
-import Button from '@economist/component-link-button';
 import React from 'react';
+import Panel from './panel';
+import classNames from 'classnames';
 
-function renderListContent(contentList, level = 0) {
-  level++;
+export default class Accordion extends React.Component {
 
-  return contentList.map((contentItem, i) => {
-    let listcontentItem = '';
-    let classNameList = [ 'accordion__link' ];
-    const commonProps = {
-      href: contentItem.href,
-      key: `${ i }`,
+  constructor(props, ...rest) {
+    super(props, ...rest);
+    this.state = {
+      activePanel: props.activePanel,
     };
-    if (contentItem.hr) {
-      return <hr key={commonProps.key} className="accordion__hr" />;
-    }
+  }
 
-    // Spread icon props.
-    if (contentItem.icon || (contentItem.children && contentItem.children.length > 0)) {
-      commonProps.icon = {
-        ...contentItem.icon,
-        size: '28px',
-      };
+  componentWillReceiveProps({ activePanel }) {
+    if (activePanel) {
+      this.setState({
+        activePanel,
+      });
     }
-    // Add the arrow down for expandable links
-    if (contentItem.children && contentItem.children.length > 0) {
-      commonProps.icon.icon = 'down';
-    }
+  }
 
-    if (contentItem.i13nModel) {
-      commonProps.i13nModel = contentItem.i13nModel; // eslint-disable-line id-match
+  setActivePanel(activePanel) {
+    if (this.state.activePanel === activePanel) {
+      activePanel = null;
     }
+    this.setState({
+      activePanel,
+    });
+  }
 
-    if (contentItem.target) {
-      commonProps.target = contentItem.target;
+  enhancePanel(panel, index) {
+    if (!panel || panel.type !== Panel) {
+      return panel;
     }
+    const setActivePanel = this.setActivePanel.bind(this, index);
+    const props = {
+      header: panel.props.header,
+      children: panel.props.children,
+      onClick: setActivePanel,
+      collapse: this.state.activePanel !== index,
+    };
+    return (<Panel {...props} />);
+  }
 
-    if (contentItem.target === '_blank') {
-      classNameList.push('accordion__link--external');
-    }
-    // By default we want the component unstyled.
-    // But overridable via prop.
-    commonProps.unstyled = contentItem.unstyled !== false;
-
-    if (contentItem.className) {
-      classNameList = classNameList.concat(contentItem.className.split(' '));
-    }
-    commonProps.className = `${ classNameList.join(' ') }`;
-
-    listcontentItem = (
-      <Button {...commonProps}>
-        {contentItem.title}
-      </Button>
-    );
-    // Recursive part
-    if (contentItem.children && contentItem.children.length > 0) {
-      listcontentItem = (
-        <Balloon
-          unstyled
-          prefix="accordion-expander"
-          className={`accordion__level${ level }`}
-          key={`level${ level }-${ i }`}
-          trigger={listcontentItem}
-        >
-        <ul className="list">
-          {renderListContent(contentItem.children, level)}
-        </ul>
-      </Balloon>
-    );
-    }
+  render() {
+    const { className, children } = this.props;
     return (
-      <li className={`list__item list__item--level-${ level }`} key={`level${ level }-${ i }`}>
-        {listcontentItem}
-      </li>
+      <div className={classNames('accordion', className)} role="tablist" aria-live="polite">
+        {Array.isArray(children) ? children.map(this.enhancePanel, this) : children}
+      </div>
     );
-  });
+  }
 }
 
-export default function Accordion({ list }) {
-  return (
-    <ul className="list accordion">
-      {renderListContent(list)}
-    </ul>
-  );
-}
-
-const accordionMenuEntry = React.PropTypes.shape({
-  title: React.PropTypes.string,
-  href: React.PropTypes.string,
-  target: React.PropTypes.string,
-  unstyled: React.PropTypes.bool,
-});
 if (process.env.NODE_ENV !== 'production') {
   Accordion.propTypes = {
-    list: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        title: React.PropTypes.string,
-        href: React.PropTypes.string,
-        target: React.PropTypes.string,
-        unstyled: React.PropTypes.bool,
-        children: React.PropTypes.arrayOf(accordionMenuEntry),
-      }),
-    ),
+    activePanel: React.PropTypes.string,
+    className: React.PropTypes.string,
+    children: React.PropTypes.node,
   };
 }
+
+export { Panel, Accordion };
