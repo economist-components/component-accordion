@@ -195,7 +195,7 @@ pre[class*&#x3D;&quot;language-&quot;] {
   <body>
         <h1 class="component-title">
       @economist/component-accordion
-      <span>(v0.0.0-development)</span>
+      <span>(v5.0.0)</span>
     </h1>
     <div id="component-preview">
       <script>
@@ -211,55 +211,162 @@ pre[class*&#x3D;&quot;language-&quot;] {
     </div>
     <div class="component-panel">
       <h2 id="readme" class="component-panel-heading"><a href="#readme">Readme</a></h2>
-          <h1>accordion</h1>
-    <p>Accordion creates a list (eventually nested) and uses component-balloon to hide/show nested children.</p>
+          <p><a href="http://www.economist.com/"><img src="https://img.shields.io/badge/By-Economist-e3120b.svg?style=flat-square" alt="By:Economist"></a><a href="https://www.npmjs.com/package/@economist%2Fcomponent-accordion"><img src="https://img.shields.io/npm/v/@economist%2Fcomponent-accordion.svg?style=flat-square" alt="Build Status"></a><a href="https://travis-ci.org/economist-components/component-accordion/branches"><img src="https://img.shields.io/travis/economist-components/component-accordion/master.svg?style=flat-square" alt="Build Status"></a><a href="https://coveralls.io/github/economist-components/component-accordion?branch=master"><img src="https://img.shields.io/coveralls/economist-components/component-accordion/master.svg?style=flat-square" alt="Coverage Status"></a></p>
+    <h1>Accordion</h1>
+    <blockquote>
+    <p>Collapse a series of panels, when one of those panels is expanded</p>
+    </blockquote>
+    <h2>Usage</h2>
+    <p><strong>This component expects an ES6 environment</strong>, and so if you are using this in an app,
+    you should drop in a polyfill library - it has been tested with <a href="https://babeljs.io/docs/usage/polyfill/">babel-polyfill</a> but
+    <a href="https://www.npmjs.com/package/core-js">core-js</a> or <a href="https://www.npmjs.com/package/es6-shim">es6-shim</a> may also work.</p>
+    <p>The default export is a React Component, so you can simply import the component and use
+    it within some JSX, like so:</p>
+    <pre><code class="lang-js">import { Accordion, Panel } from '@economist/component-accordion';
+    
+    return (
+      &lt;Accordion&gt;
+        &lt;Panel header={&lt;h2&gt;Search Engines&lt;/h2&gt;}&gt;
+          &lt;a href=&quot;http://google.com&quot;&gt;Google&lt;/a&gt;
+          &lt;a href=&quot;http://bing.com&quot;&gt;Bing&lt;/a&gt;
+          &lt;a href=&quot;http://yahoo.com&quot;&gt;Yahoo&lt;/a&gt;
+        &lt;/Panel&gt;
+      &lt;/Accordion&gt;
+    );
+    </code></pre>
+    <p>For more examples on usage, see <a href="./src/example.es6"><code>src/example.es6</code></a>.</p>
+    <h2>Install</h2>
+    <pre><code class="lang-bash">npm i -S @economist/component-accordion
+    </code></pre>
+    <h2>Run tests</h2>
+    <pre><code class="lang-bash">npm test
+    </code></pre>
     
     
     </div>
     <div class="component-panel">
       <h2 id="example" class="component-panel-heading"><a href="#example">Example</a></h2>
-      <pre><code>    <span class="token keyword" >import</span> <span class="token string" >'babel-polyfill'</span><span class="token punctuation" >;</span>
+      <pre><code>    <span class="token keyword" >import</span> <span class="token punctuation" >{</span> Accordion<span class="token punctuation" >,</span> Panel <span class="token punctuation" >}</span> <span class="token keyword" >from</span> <span class="token string" >'./index'</span><span class="token punctuation" >;</span>
     <span class="token keyword" >import</span> React <span class="token keyword" >from</span> <span class="token string" >'react'</span><span class="token punctuation" >;</span>
-    <span class="token keyword" >import</span> Accordion <span class="token keyword" >from</span> <span class="token string" >'./'</span><span class="token punctuation" >;</span>
-    <span class="token keyword" >import</span> cardData <span class="token keyword" >from</span> <span class="token string" >'@economist/component-sections-card/lib/context'</span><span class="token punctuation" >;</span>
-    <span class="token comment" spellcheck="true">// Force media links to use icon as background.</span>
-    cardData<span class="token punctuation" >.</span>media<span class="token punctuation" >.</span><span class="token function" >map</span><span class="token punctuation" >(</span><span class="token punctuation" >(</span>mediaLink<span class="token punctuation" >)</span> <span class="token operator" >=</span><span class="token operator" >></span> <span class="token punctuation" >{</span>
-      mediaLink<span class="token punctuation" >.</span>icon <span class="token operator" >=</span> <span class="token punctuation" >{</span>
-        useBackground<span class="token punctuation" >:</span> <span class="token boolean" >true</span><span class="token punctuation" >,</span>
-        color<span class="token punctuation" >:</span> <span class="token string" >'chicago'</span><span class="token punctuation" >,</span>
-        icon<span class="token punctuation" >:</span> mediaLink<span class="token punctuation" >.</span>meta<span class="token punctuation" >,</span>
-      <span class="token punctuation" >}</span><span class="token punctuation" >;</span>
-      <span class="token keyword" >return</span> mediaLink<span class="token punctuation" >;</span>
-    <span class="token punctuation" >}</span><span class="token punctuation" >)</span><span class="token punctuation" >;</span>
-    <span class="token keyword" >const</span> accordionData <span class="token operator" >=</span> <span class="token punctuation" >[</span>
-      <span class="token punctuation" >{</span>
-        title<span class="token punctuation" >:</span> <span class="token string" >'Sections'</span><span class="token punctuation" >,</span>
-        href<span class="token punctuation" >:</span> <span class="token string" >'http://www.economist.com/sections'</span><span class="token punctuation" >,</span>
-        children<span class="token punctuation" >:</span> cardData<span class="token punctuation" >.</span>sections<span class="token punctuation" >,</span>
-      <span class="token punctuation" >}</span><span class="token punctuation" >,</span>
-      <span class="token punctuation" >{</span>
-        title<span class="token punctuation" >:</span> <span class="token string" >'Blogs'</span><span class="token punctuation" >,</span>
-        href<span class="token punctuation" >:</span> <span class="token string" >'http://www.economist.com/blogs'</span><span class="token punctuation" >,</span>
-        children<span class="token punctuation" >:</span> cardData<span class="token punctuation" >.</span>blogs<span class="token punctuation" >,</span>
-      <span class="token punctuation" >}</span><span class="token punctuation" >,</span>
-      <span class="token punctuation" >.</span><span class="token punctuation" >.</span><span class="token punctuation" >.</span>cardData<span class="token punctuation" >.</span>media<span class="token punctuation" >,</span>
-      <span class="token punctuation" >{</span>
-        title<span class="token punctuation" >:</span> <span class="token string" >'Print Edition'</span><span class="token punctuation" >,</span>
-        href<span class="token punctuation" >:</span> <span class="token string" >'http://www.economist.com/printedition/'</span><span class="token punctuation" >,</span>
-      <span class="token punctuation" >}</span><span class="token punctuation" >,</span>
-      <span class="token punctuation" >{</span>
-        title<span class="token punctuation" >:</span> <span class="token string" >'Products'</span><span class="token punctuation" >,</span>
-        href<span class="token punctuation" >:</span> <span class="token string" >'http://www.economist.com/digital'</span><span class="token punctuation" >,</span>
-      <span class="token punctuation" >}</span><span class="token punctuation" >,</span>
-      <span class="token punctuation" >{</span>
-        title<span class="token punctuation" >:</span> <span class="token string" >'Subscribe'</span><span class="token punctuation" >,</span>
-        href<span class="token punctuation" >:</span> <span class="token string" >'https://subscriptions.economist.com/'</span><span class="token punctuation" >,</span>
-        target<span class="token punctuation" >:</span> <span class="token string" >'_blank'</span><span class="token punctuation" >,</span>
-        unstyled<span class="token punctuation" >:</span> <span class="token boolean" >false</span><span class="token punctuation" >,</span>
-      <span class="token punctuation" >}</span><span class="token punctuation" >,</span>
-    <span class="token punctuation" >]</span><span class="token punctuation" >;</span>
+    
     <span class="token keyword" >export</span> <span class="token keyword" >default</span> <span class="token punctuation" >(</span>
-      <span class="token operator" >&lt;</span>Accordion list<span class="token operator" >=</span><span class="token punctuation" >{</span>accordionData<span class="token punctuation" >}</span> <span class="token operator" >/</span><span class="token operator" >></span>
+      <span class="token operator" >&lt;</span>Accordion className<span class="token operator" >=</span><span class="token string" >"nav-menu"</span><span class="token operator" >></span>
+        <span class="token operator" >&lt;</span>Panel header<span class="token operator" >=</span><span class="token punctuation" >{</span><span class="token operator" >&lt;</span>h2<span class="token operator" >></span>Sections<span class="token operator" >&lt;</span><span class="token operator" >/</span>h2<span class="token operator" >></span><span class="token punctuation" >}</span> className<span class="token operator" >=</span><span class="token string" >"nav-menu__sections"</span><span class="token operator" >></span>
+          <span class="token operator" >&lt;</span>ul<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Latest updates
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Britain
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Europe
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              United States
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              The Americas
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Middle East <span class="token operator" >&amp;</span> Africa
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Asia
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              China
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              International
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Business
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Finance <span class="token operator" >&amp;</span> Economics
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Science <span class="token operator" >&amp;</span> Technology
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Books <span class="token operator" >&amp;</span> Arts
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Obituaries
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Leaders
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Briefing
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Debate
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+          <span class="token operator" >&lt;</span><span class="token operator" >/</span>ul<span class="token operator" >></span>
+        <span class="token operator" >&lt;</span><span class="token operator" >/</span>Panel<span class="token operator" >></span>
+        <span class="token operator" >&lt;</span>Panel header<span class="token operator" >=</span><span class="token punctuation" >{</span><span class="token operator" >&lt;</span>h2<span class="token operator" >></span>Blog<span class="token operator" >&lt;</span><span class="token operator" >/</span>h2<span class="token operator" >></span><span class="token punctuation" >}</span> className<span class="token operator" >=</span><span class="token string" >"nav-menu__blogs"</span><span class="token operator" >></span>
+          <span class="token operator" >&lt;</span>ul<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Buttonwood's notebook
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Erasmus
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Game theory
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Gulliver
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              The Economist explains
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Bagehot's notebook
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Democracy <span class="token keyword" >in</span> America
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Free exchange
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Graphic detail
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+            <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+              Prospero
+            <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+          <span class="token operator" >&lt;</span><span class="token operator" >/</span>ul<span class="token operator" >></span>
+        <span class="token operator" >&lt;</span><span class="token operator" >/</span>Panel<span class="token operator" >></span>
+        <span class="token operator" >&lt;</span>ul className<span class="token operator" >=</span><span class="token string" >"otherLinks"</span><span class="token operator" >></span>
+          <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+            Apps
+          <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+          <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+            Audio
+          <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+          <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+            Radio
+          <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+          <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+            Video
+          <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+          <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+            Films
+          <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+          <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+            Print Edition
+          <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+          <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+            Products
+          <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+          <span class="token operator" >&lt;</span>li<span class="token operator" >></span><span class="token operator" >&lt;</span>a href<span class="token operator" >=</span><span class="token string" >"http://www.economist.com/latest-updates"</span><span class="token operator" >></span>
+            Subscribe
+          <span class="token operator" >&lt;</span><span class="token operator" >/</span>a<span class="token operator" >></span><span class="token operator" >&lt;</span><span class="token operator" >/</span>li<span class="token operator" >></span>
+        <span class="token operator" >&lt;</span><span class="token operator" >/</span>ul<span class="token operator" >></span>
+      <span class="token operator" >&lt;</span><span class="token operator" >/</span>Accordion<span class="token operator" >></span>
     <span class="token punctuation" >)</span><span class="token punctuation" >;</span>
     
     </pre></code>
