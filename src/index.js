@@ -38,6 +38,7 @@ export default class Accordion extends React.Component {
       children: panel.props.children,
       onClick: setActivePanel,
       collapse: this.state.activePanel !== index,
+      key: index,
     };
     return (<Panel {...props} />);
   }
