@@ -1,6 +1,7 @@
 import React from 'react';
 import Panel from './panel';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 export default class Accordion extends React.Component {
 
@@ -55,9 +56,9 @@ export default class Accordion extends React.Component {
 
 if (process.env.NODE_ENV !== 'production') {
   Accordion.propTypes = {
-    activePanel: React.PropTypes.string,
-    className: React.PropTypes.string,
-    children: React.PropTypes.node,
+    activePanel: PropTypes.number,
+    className: PropTypes.string,
+    children: PropTypes.node,
   };
 }
 

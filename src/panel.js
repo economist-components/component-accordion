@@ -1,6 +1,7 @@
 import React from 'react';
 import uniqueId from 'lodash.uniqueid';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 export default function Panel({
   className,
@@ -42,12 +43,12 @@ export default function Panel({
 
 if (process.env.NODE_ENV !== 'production') {
   Panel.propTypes = {
-    idSuffix: React.PropTypes.string,
-    className: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    header: React.PropTypes.node,
-    children: React.PropTypes.node,
-    collapse: React.PropTypes.bool,
+    idSuffix: PropTypes.string,
+    className: PropTypes.string,
+    onClick: PropTypes.func,
+    onFocus: PropTypes.func,
+    header: PropTypes.node,
+    children: PropTypes.node,
+    collapse: PropTypes.bool,
   };
 }

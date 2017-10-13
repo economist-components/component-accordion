@@ -115,6 +115,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash.uniqueid": "^4.0.0",
+    "prop-types": "^15.6.0",
     "react": "^0.14.8||^15.0.0"
   },
   "devDependencies": {
@@ -136,7 +137,7 @@
     "browserify": "^13.0.1",
     "browserify-istanbul": "^2.0.0",
     "chai": "^3.5.0",
-    "chai-enzyme": "^0.4.2",
+    "chai-enzyme": "^0.8.0",
     "chai-spies": "^0.7.1",
     "coveralls": "^2.11.9",
     "enzyme": "^2.2.0",
@@ -170,6 +171,7 @@
     "postcss-url": "^5.1.2",
     "react-addons-test-utils": "^0.14.8||^15.0.0",
     "react-dom": "^0.14.8||^15.0.0",
+    "react-test-renderer": "^15.6.0",
     "semantic-release": "^4.3.5",
     "stylelint": "^6.5.1",
     "stylelint-config-strict": "^5.0.0",
