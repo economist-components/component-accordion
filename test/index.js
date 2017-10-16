@@ -1,9 +1,13 @@
 import 'babel-polyfill';
 import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import { Accordion, Panel } from '../src';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import { mount } from 'enzyme';
+
+Enzyme.configure({ adapter: new Adapter() });
 chai.use(chaiEnzyme()).should();
 describe('Accordion', () => {
 
@@ -46,6 +50,12 @@ describe('Accordion', () => {
     describe('Panel children', () => {
       let panelA = null;
       let panelB = null;
+      function refreshWrappers() {
+        accordion = rendered.find('.accordion');
+        panelA = accordion.childAt(0);
+        panelB = accordion.childAt(1);
+      }
+
       beforeEach(() => {
         rendered = mount(
           <Accordion>
@@ -54,9 +64,8 @@ describe('Accordion', () => {
             <div className="child" />
           </Accordion>
         );
-        accordion = rendered.find('.accordion');
-        panelA = accordion.childAt(0);
-        panelB = accordion.childAt(1);
+
+        refreshWrappers();
       });
 
       it('enhances panels by auto collapsing all panels', () => {
@@ -108,7 +117,10 @@ describe('Accordion', () => {
         accordion.childAt(1).should.have.prop('collapse', true);
 
         wrapper.setState({ activePanel: 1 });
-
+        // In enzyme 3 the object returned by wrapper.find()
+        // becomes stale after the component has updated.
+        // Therefore we need to run wrapper.find() again.
+        accordion = wrapper.find('.accordion');
         accordion.childAt(0).should.have.prop('collapse', true);
         accordion.childAt(1).should.have.prop('collapse', false);
       });
@@ -117,33 +129,40 @@ describe('Accordion', () => {
 
         it('sets panel `collapse` to false', () => {
           panelA.find('.accordion__panel-header').simulate('click');
+          refreshWrappers();
           panelA.should.have.prop('collapse', false);
         });
 
         it('sets other panels `collapse` to true', () => {
           panelA.find('.accordion__panel-header').simulate('click');
+          refreshWrappers();
           panelA.should.have.prop('collapse', false);
           panelB.should.have.prop('collapse', true);
 
           panelB.find('.accordion__panel-header').simulate('click');
+          refreshWrappers();
           panelB.should.have.prop('collapse', false);
           panelA.should.have.prop('collapse', true);
         });
 
         it('closes panel if clicked on once expanded', () => {
           panelA.find('.accordion__panel-header').simulate('click');
+          refreshWrappers();
           panelA.should.have.prop('collapse', false);
           panelB.should.have.prop('collapse', true);
 
           panelA.find('.accordion__panel-header').simulate('click');
+          refreshWrappers();
           panelA.should.have.prop('collapse', true);
           panelB.should.have.prop('collapse', true);
 
           panelB.find('.accordion__panel-header').simulate('click');
+          refreshWrappers();
           panelA.should.have.prop('collapse', true);
           panelB.should.have.prop('collapse', false);
 
           panelB.find('.accordion__panel-header').simulate('click');
+          refreshWrappers();
           panelA.should.have.prop('collapse', true);
           panelB.should.have.prop('collapse', true);
         });
